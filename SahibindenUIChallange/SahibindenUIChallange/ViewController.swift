@@ -11,17 +11,7 @@ enum CellType: String {
     case regularCell = "Liste Görünümü"
     case detailedCell = "Detaylı Liste"
 }
-class ViewController: UIViewController, OptionsDelegate {
-    func didSelect(_ option: CellType) {
-        cellType = option
-        if option == .marketCell {
-            tblProducts.isScrollEnabled = false
-        }else {
-            tblProducts.isScrollEnabled = true
-        }
-        tblProducts.reloadData()
-        
-    }
+class ViewController: UIViewController {
     
 
     @IBOutlet weak var btnViewOptions: UIButton!
@@ -108,6 +98,20 @@ extension ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("it appears")
+    }
+}
+
+extension ViewController: OptionsDelegate {
+    
+    func didSelect(_ option: CellType) {
+        cellType = option
+        if option == .marketCell {
+            tblProducts.isScrollEnabled = false
+        }else {
+            tblProducts.isScrollEnabled = true
+        }
+        tblProducts.reloadData()
+        
     }
 }
 
